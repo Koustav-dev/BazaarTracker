@@ -1,0 +1,230 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@layer base {
+  :root {
+    /* ── Light theme: warm parchment × saffron ── */
+    --font-display: 'Sora', system-ui, sans-serif;
+    --font-body:    'DM Sans', system-ui, sans-serif;
+    --font-mono:    'JetBrains Mono', monospace;
+
+    --bg-base:      #FFFDF1;   /* cream parchment */
+    --bg-card:      #FFFFFF;   /* pure white cards */
+    --bg-elevated:  #FFF8E6;   /* slightly warmer than base */
+    --bg-border:    #FFCE99;   /* peach border */
+    --bg-hover:     #FFE8CC;   /* peach hover */
+
+    --txt-primary:  #562F00;   /* deep brown — excellent contrast on cream */
+    --txt-secondary:#7A4510;   /* mid brown */
+    --txt-muted:    #B07040;   /* warm tan */
+
+    --accent:       #FF9644;   /* saffron orange */
+    --accent-2:     #FFCE99;   /* peach — secondary accent */
+
+    --up:           #2D7A3A;   /* forest green — readable on cream */
+    --down:         #C0392B;   /* deep red — readable on cream */
+    --warn:         #C87800;   /* amber — readable on cream */
+  }
+
+  .dark {
+    /* ── Dark theme: pure black × neon purple × hot pink × gold ── */
+    --bg-base:      #000000;   /* pure black */
+    --bg-card:      #0D0D0D;   /* near-black card */
+    --bg-elevated:  #141414;   /* slightly lifted surface */
+    --bg-border:    #2A1040;   /* deep purple-tinted border */
+    --bg-hover:     #1A0A2E;   /* dark purple hover */
+
+    --txt-primary:  #FAEB92;   /* warm gold — primary text on black */
+    --txt-secondary:#E8C8FF;   /* soft lavender */
+    --txt-muted:    #7A5A9A;   /* muted purple */
+
+    --accent:       #9929EA;   /* electric purple */
+    --accent-2:     #FF5FCF;   /* hot pink — secondary accent */
+
+    --up:           #00E676;   /* neon green — pops on black */
+    --down:         #FF5FCF;   /* hot pink for down (matches palette) */
+    --warn:         #FAEB92;   /* gold for warnings */
+  }
+
+  html { scroll-behavior: smooth; font-family: var(--font-body); }
+  body {
+    background: var(--bg-base);
+    color: var(--txt-primary);
+    -webkit-font-smoothing: antialiased;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+  * { scrollbar-width: thin; scrollbar-color: var(--bg-border) transparent; }
+  *::-webkit-scrollbar { width: 4px; height: 4px; }
+  *::-webkit-scrollbar-track { background: transparent; }
+  *::-webkit-scrollbar-thumb { background: var(--bg-border); border-radius: 99px; }
+  ::selection {
+    background: color-mix(in srgb, var(--accent) 25%, transparent);
+    color: var(--accent);
+  }
+}
+
+@layer components {
+  .page { @apply max-w-7xl mx-auto px-4 sm:px-6 py-6; }
+
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--bg-border);
+    border-radius: 16px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.06), 0 2px 12px rgba(0,0,0,.04);
+    transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+  }
+  .dark .card {
+    box-shadow: 0 1px 4px rgba(153,41,234,.08), 0 2px 16px rgba(0,0,0,.4);
+  }
+  .card-hover { @apply card cursor-pointer; }
+  .card-hover:hover {
+    border-color: var(--accent);
+    box-shadow: 0 4px 24px color-mix(in srgb, var(--accent) 18%, transparent);
+    transform: translateY(-2px);
+  }
+
+  .btn-primary {
+    background: var(--accent); color: white; font-weight: 600;
+    padding: .5rem 1.25rem; border-radius: 10px; font-size: .875rem;
+    display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+    transition: all .15s ease; border: none; cursor: pointer;
+    box-shadow: 0 2px 12px color-mix(in srgb, var(--accent) 40%, transparent);
+    font-family: var(--font-body);
+  }
+  /* Dark: primary button gets a neon glow */
+  .dark .btn-primary {
+    color: #000;
+    box-shadow: 0 0 16px color-mix(in srgb, var(--accent) 50%, transparent);
+  }
+  .btn-primary:hover {
+    filter: brightness(1.1);
+    box-shadow: 0 4px 20px color-mix(in srgb, var(--accent) 55%, transparent);
+    transform: translateY(-1px);
+  }
+  .btn-primary:active { transform: scale(.97); }
+
+  .btn-secondary {
+    background: var(--bg-elevated); color: var(--txt-primary); font-weight: 500;
+    padding: .5rem 1.25rem; border-radius: 10px; font-size: .875rem;
+    display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+    border: 1px solid var(--bg-border); transition: all .15s ease; cursor: pointer;
+    font-family: var(--font-body);
+  }
+  .btn-secondary:hover { border-color: var(--accent); background: var(--bg-hover); transform: translateY(-1px); }
+
+  .btn-ghost {
+    background: transparent; color: var(--txt-secondary); font-weight: 500;
+    padding: .4rem .75rem; border-radius: 8px; font-size: .875rem;
+    display: inline-flex; align-items: center; justify-content: center; gap: .4rem;
+    transition: all .15s ease; cursor: pointer; border: none;
+    font-family: var(--font-body);
+  }
+  .btn-ghost:hover { background: var(--bg-elevated); color: var(--txt-primary); }
+
+  .input {
+    background: var(--bg-elevated); border: 1px solid var(--bg-border);
+    border-radius: 10px; padding: .6rem 1rem; font-size: .875rem;
+    color: var(--txt-primary); outline: none; width: 100%;
+    transition: all .15s ease; font-family: var(--font-body);
+  }
+  .input::placeholder { color: var(--txt-muted); }
+  .input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 15%, transparent);
+  }
+
+  .label {
+    font-size: .75rem; font-weight: 600; color: var(--txt-muted);
+    text-transform: uppercase; letter-spacing: .05em; display: block; margin-bottom: .375rem;
+  }
+
+  .badge-up {
+    background: color-mix(in srgb, var(--up) 12%, transparent);
+    color: var(--up); font-family: var(--font-mono); font-size: .72rem;
+    padding: .1rem .45rem; border-radius: 5px;
+    border: 1px solid color-mix(in srgb, var(--up) 25%, transparent); font-weight: 500;
+  }
+  .badge-down {
+    background: color-mix(in srgb, var(--down) 12%, transparent);
+    color: var(--down); font-family: var(--font-mono); font-size: .72rem;
+    padding: .1rem .45rem; border-radius: 5px;
+    border: 1px solid color-mix(in srgb, var(--down) 25%, transparent); font-weight: 500;
+  }
+  .badge-neutral {
+    background: var(--bg-elevated); color: var(--txt-muted);
+    font-family: var(--font-mono); font-size: .72rem;
+    padding: .1rem .45rem; border-radius: 5px; border: 1px solid var(--bg-border);
+  }
+
+  .stat-label {
+    font-size: .68rem; color: var(--txt-muted); font-weight: 600;
+    text-transform: uppercase; letter-spacing: .06em;
+  }
+  .skeleton {
+    background: linear-gradient(90deg, var(--bg-elevated) 25%, var(--bg-hover) 50%, var(--bg-elevated) 75%);
+    background-size: 200% 100%; animation: shimmer 1.6s ease-in-out infinite; border-radius: 10px;
+  }
+  .live-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--up); animation: pulseDot 2s ease-in-out infinite;
+  }
+  .section-title {
+    font-size: .68rem; font-weight: 700; color: var(--txt-muted);
+    text-transform: uppercase; letter-spacing: .1em;
+  }
+
+  /* Dark theme: neon glow on accent elements */
+  .dark .accent-glow {
+    box-shadow: 0 0 20px color-mix(in srgb, var(--accent) 40%, transparent),
+                0 0 40px color-mix(in srgb, var(--accent) 20%, transparent);
+  }
+  .dark .pink-glow {
+    box-shadow: 0 0 20px color-mix(in srgb, var(--accent-2) 40%, transparent);
+  }
+}
+
+/* Ticker */
+.ticker-wrap {
+  overflow: hidden; white-space: nowrap;
+  mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
+}
+.ticker-inner { display: inline-block; animation: ticker 50s linear infinite; will-change: transform; }
+.ticker-inner:hover { animation-play-state: paused; }
+
+/* Chart tooltip */
+.recharts-default-tooltip {
+  background: var(--bg-card) !important;
+  border: 1px solid var(--bg-border) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 24px rgba(0,0,0,.15) !important;
+  font-family: var(--font-body) !important;
+  color: var(--txt-primary) !important;
+}
+.recharts-tooltip-label { color: var(--txt-muted) !important; font-size: 11px !important; }
+
+/* Animations */
+@keyframes shimmer    { 0%{background-position:-200% 0} 100%{background-position:200% 0} }
+@keyframes fadeUp     { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fadeIn     { from{opacity:0} to{opacity:1} }
+@keyframes ticker     { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+@keyframes pulseDot   { 0%,100%{opacity:1;transform:scale(1);box-shadow:0 0 0 0 color-mix(in srgb,var(--up) 50%,transparent)} 50%{opacity:.8;transform:scale(1.15);box-shadow:0 0 0 5px transparent} }
+@keyframes float      { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+@keyframes spin       { to{transform:rotate(360deg)} }
+@keyframes scaleIn    { from{opacity:0;transform:scale(.94)} to{opacity:1;transform:scale(1)} }
+@keyframes numIn      { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+@keyframes slideRight { from{opacity:0;transform:translateX(-10px)} to{opacity:1;transform:translateX(0)} }
+@keyframes neonPulse  {
+  0%,100% { box-shadow: 0 0 8px color-mix(in srgb,var(--accent) 40%,transparent); }
+  50%     { box-shadow: 0 0 24px color-mix(in srgb,var(--accent) 70%,transparent), 0 0 48px color-mix(in srgb,var(--accent) 30%,transparent); }
+}
+
+.animate-fade-up   { animation: fadeUp .5s cubic-bezier(.16,1,.3,1) both; }
+.animate-fade-in   { animation: fadeIn .4s ease both; }
+.animate-scale-in  { animation: scaleIn .35s cubic-bezier(.16,1,.3,1) both; }
+.animate-float     { animation: float 3s ease-in-out infinite; }
+.animate-spin      { animation: spin .7s linear infinite; }
+.num-animate       { animation: numIn .5s cubic-bezier(.16,1,.3,1) forwards; }
+.dark .animate-neon-pulse { animation: neonPulse 2.5s ease-in-out infinite; }
