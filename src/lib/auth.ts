@@ -45,7 +45,7 @@ export const authOptions: NextAuthOptions = {
               password:      "",
               emailVerified: true,
             });
-          } else if (user.emailVerified === false) {
+          } else if (!existing.emailVerified) {
             await User.findByIdAndUpdate(existing._id, { emailVerified: true });
           }
         } catch (e) {
