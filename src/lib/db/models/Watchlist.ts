@@ -1,6 +1,6 @@
 import mongoose, { Document, Schema } from "mongoose";
 export interface IWatchlistItem { symbol: string; name: string; exchange: "NSE"|"BSE"; addedAt: Date; }
-export interface IWatchlist extends Document { userId: mongoose.Types.ObjectId; stocks: IWatchlistItem[]; }
+export interface IWatchlist extends Document { userId: string; stocks: IWatchlistItem[]; }
 const ItemSchema = new Schema<IWatchlistItem>(
   { symbol: { type: String, required: true }, name: { type: String, required: true },
     exchange: { type: String, enum: ["NSE","BSE"], required: true }, addedAt: { type: Date, default: Date.now } },
