@@ -2,12 +2,12 @@ import mongoose, { Document, Schema } from "mongoose";
 export type AlertCondition = "above" | "below";
 export type AlertStatus = "active" | "triggered" | "paused";
 export interface IAlert extends Document {
-  userId: mongoose.Types.ObjectId; symbol: string; name: string; exchange: "NSE"|"BSE";
+  userId: string; symbol: string; name: string; exchange: "NSE"|"BSE";
   condition: AlertCondition; targetPrice: number; currentPrice?: number;
   status: AlertStatus; notifyEmail: boolean; triggeredAt?: Date; createdAt: Date; updatedAt: Date;
 }
 const AlertSchema = new Schema<IAlert>(
-  { userId: { type: Schema.Types.ObjectId, ref: "User", required: true },
+  { userId: { type: String, required: true },
     symbol: { type: String, required: true }, name: { type: String, required: true },
     exchange: { type: String, enum: ["NSE","BSE"], required: true },
     condition: { type: String, enum: ["above","below"], required: true },

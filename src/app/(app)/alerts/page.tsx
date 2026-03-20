@@ -105,7 +105,11 @@ export default function AlertsPage() {
   async function removeAlert(id: string) {
     setDeleting(id);
     try {
-      await fetch(`/api/alerts?id=${id}`, { method: "DELETE" });
+      await fetch(`/api/alerts`, {
+  method: "DELETE",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ id }),
+});
       qc.invalidateQueries({ queryKey: ["alerts"] });
       toast.success("Alert removed");
     } catch { toast.error("Failed to remove"); }
@@ -139,7 +143,7 @@ export default function AlertsPage() {
           <div>
             <p className="text-xs font-bold text-[var(--txt-primary)] mb-0.5">How alerts work</p>
             <p className="text-xs text-[var(--txt-muted)] leading-relaxed">
-              Alerts are checked every 5 minutes during NSE market hours (9:15 AM – 3:30 PM IST, Mon–Fri).
+              Alerts are checked every minutes during NSE market hours (9:15 AM – 3:30 PM IST, Mon–Fri).
               When your target price is hit, the alert status changes to &quot;Triggered&quot; and you receive an email if enabled.
               Alerts trigger once and are not recurring — set a new one after it fires.
             </p>

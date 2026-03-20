@@ -524,8 +524,8 @@ export async function searchStocks(query: string): Promise<StockSearchResult[]> 
       exchange: "NSE" as const,
       type:   item.asset_type || "EQUITY",
     }));
-    // Merge, deduplicate
-    const merged = [...local];
+    // Merge, deduplicate — cast to StockSearchResult[] to drop _score
+    const merged: StockSearchResult[] = local.map(({ _score: _, ...s }) => s as StockSearchResult);
     for (const r of symbols) {
       if (!merged.find(m => m.symbol === r.symbol)) merged.push(r);
     }

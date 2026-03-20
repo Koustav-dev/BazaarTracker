@@ -47,3 +47,26 @@ ${["Track unlimited NSE & BSE stocks","Set price alerts with email notifications
 </div>`;
   await transporter.sendMail({ from: FROM, to, subject: "Welcome to Bazaar 🚀", html: wrap(body) });
 }
+
+export async function sendOTPEmail(to: string, name: string, code: string) {
+  const body = `
+<p style="color:#64748b;margin:0 0 16px">Hello ${name},</p>
+<p style="font-size:15px;line-height:1.7;margin:0 0 20px">
+  Use the code below to verify your email and complete your Bazaar account setup.
+  This code expires in <strong>10 minutes</strong>.
+</p>
+<div style="text-align:center;margin:28px 0">
+  <div style="display:inline-block;background:#f0f9ff;border:2px dashed #0ea5e9;border-radius:12px;padding:20px 40px">
+    <p style="font-size:36px;font-weight:800;letter-spacing:10px;color:#0ea5e9;margin:0;font-family:monospace">${code}</p>
+  </div>
+</div>
+<p style="color:#94a3b8;font-size:12px;text-align:center">
+  If you didn't request this, you can safely ignore this email.
+</p>`;
+  await transporter.sendMail({
+    from: FROM,
+    to,
+    subject: `${code} — Your Bazaar verification code`,
+    html: wrap(body),
+  });
+}

@@ -7,7 +7,7 @@ const ItemSchema = new Schema<IWatchlistItem>(
   { _id: false }
 );
 const WatchlistSchema = new Schema<IWatchlist>(
-  { userId: { type: Schema.Types.ObjectId, ref: "User", required: true, unique: true },
+  { userId: { type: String, required: true },
     stocks: { type: [ItemSchema], default: [] } },
   { timestamps: true }
 );
