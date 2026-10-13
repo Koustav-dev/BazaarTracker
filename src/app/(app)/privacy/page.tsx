@@ -16,11 +16,7 @@ export default function Privacy() {
           { title: "What we collect", body: "We collect your email address and name during registration, your watchlist stocks, and price alerts you create. We do not collect payment information." },
           { title: "How we use it", body: "Your email is used to send price alert notifications you explicitly request. We do not sell your data or use it for advertising." },
           { title: "Storage", body: "Data is stored in MongoDB Atlas (encrypted at rest). Passwords are hashed with bcrypt and never stored in plain text." },
-<<<<<<< HEAD
           { title: "Third-party services", body: "We use Yahoo Finance, NSE and Groq APIs to fetch market data. These are server-side calls — your personal data is never shared with them." },
-=======
-          { title: "Third-party services", body: "We use NSE, FMP, and Yahoo Finance APIs to fetch market data. These are server-side calls — your personal data is never shared with them." },
->>>>>>> 1fa8d5008fc6d81fb2d1cf7db82b1239c1087b5b
           { title: "Cookies", body: "We use a single JWT session cookie for authentication (NextAuth.js). We do not use tracking or advertising cookies." },
           { title: "Your rights", body: "You can delete your account and all associated data at any time by contacting us at privacy@bazaar.app." },
           { title: "Contact", body: "For privacy concerns, email privacy@bazaar.app." },

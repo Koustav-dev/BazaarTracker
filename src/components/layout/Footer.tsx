@@ -22,16 +22,9 @@ const NAV_LINKS = {
 };
 
 const DATA_SOURCES = [
-<<<<<<< HEAD
   { name: "Yahoo Finance", desc: "Prices, charts, PE, EPS, P/B, 52W, market cap", color: "#059669" },
   { name: "NSE",           desc: "Delivery %, VWAP (when reachable)",           color: "#2563eb" },
   { name: "Groq AI",       desc: "AI analysis (GPT-OSS 120B)",                  color: "#d97706" },
-=======
-  { name: "NSE",      desc: "Prices, PE, delivery & 52W",       color: "#2563eb" },
-  { name: "FMP",      desc: "Market cap, P/B, Book Value",       color: "#7c3aed" },
-  { name: "Yahoo",    desc: "Charts & BSE price fallback",        color: "#059669" },
-  { name: "Groq AI",  desc: "Technical analysis (Llama 3.3 70B)", color: "#d97706" },
->>>>>>> 1fa8d5008fc6d81fb2d1cf7db82b1239c1087b5b
 ];
 
 export function Footer() {

@@ -2,21 +2,12 @@ import Link from "next/link";
 import { TrendingUp, BarChart2, Bell, Sparkles, ArrowRight, Zap, Shield, Activity } from "lucide-react";
 
 const FEATURES = [
-<<<<<<< HEAD
   { icon: Activity,  title: "Live NSE + BSE",      desc: "Live prices and charts for NSE and BSE stocks" },
   { icon: BarChart2, title: "Technical Analysis",  desc: "RSI, MACD, Bollinger Bands, SMA 20/50/200 calculated automatically" },
   { icon: Sparkles,  title: "AI Research Notes",   desc: "An AI model reads the indicators and fundamentals and drafts short- and long-term views with price levels" },
   { icon: Bell,      title: "Price Alerts",        desc: "Email notifications the moment your target price is hit" },
   { icon: Zap,       title: "Instant Search",      desc: "100+ stocks in local index with NSE autocomplete for any symbol" },
   { icon: Shield,    title: "Data from Source",    desc: "PE, EPS, P/B, 52-week range and market cap, with delivery % from NSE when available" },
-=======
-  { icon: Activity,  title: "Live NSE + BSE",      desc: "Real-time prices from NSE's official API with Yahoo Finance fallback" },
-  { icon: BarChart2, title: "Technical Analysis",  desc: "RSI, MACD, Bollinger Bands, SMA 20/50/200 calculated automatically" },
-  { icon: Sparkles,  title: "AI Research Notes",   desc: "Groq AI analyses every metric and gives directional views with specific price levels" },
-  { icon: Bell,      title: "Price Alerts",        desc: "Email notifications the moment your target price is hit" },
-  { icon: Zap,       title: "Instant Search",      desc: "100+ stocks in local index with NSE autocomplete for any symbol" },
-  { icon: Shield,    title: "Data from Source",    desc: "PE ratio, 52W range, delivery% directly from NSE. EPS/P/B from Yahoo" },
->>>>>>> 1fa8d5008fc6d81fb2d1cf7db82b1239c1087b5b
 ];
 
 const TICKERS = ["RELIANCE +0.8%","TCS -0.3%","HDFCBANK +1.2%","INFY +0.6%","BAJFINANCE -0.4%","ZOMATO +3.1%","SBIN +0.9%","TATAMOTORS -0.7%","ADANIENT +1.5%","WIPRO +0.2%","NIFTY 50 +0.4%","SENSEX +0.3%","ITC +0.7%","AXISBANK -0.2%"];
@@ -60,11 +51,7 @@ export default function LandingPage() {
         </h1>
 
         <p className="text-lg text-txt-muted max-w-xl mb-10 leading-relaxed animate-stagger-2">
-<<<<<<< HEAD
           NSE & BSE prices with technical indicators — RSI, MACD, Bollinger Bands — and an AI that turns them into a plain-language outlook.
-=======
-          Real-time NSE & BSE prices with institutional-grade technical analysis. RSI, MACD, Bollinger Bands — and an AI that thinks like a Mumbai analyst.
->>>>>>> 1fa8d5008fc6d81fb2d1cf7db82b1239c1087b5b
         </p>
 
         <div className="flex items-center gap-3 flex-wrap justify-center animate-stagger-3">
