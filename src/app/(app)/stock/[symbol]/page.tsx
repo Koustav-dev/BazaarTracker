@@ -164,8 +164,13 @@ export default function StockPage() {
     { label: "Market Cap", value: stock.marketCap ? formatCompactNumber(stock.marketCap) : "—" },
     { label: "P/E Ratio",  value: stock.peRatio ? stock.peRatio.toFixed(2) : "—", highlight: !!stock.peRatio,
       sub: stock.peRatio ? (stock.peRatio < 12 ? "Cheap" : stock.peRatio < 25 ? "Fair" : stock.peRatio < 40 ? "Pricey" : "Very pricey") : undefined,
+<<<<<<< HEAD
       tooltip: "Trailing price-to-earnings ratio" },
     { label: "EPS",        value: stock.eps ? `₹${stock.eps.toFixed(2)}` : "—", sub: "Trailing 12M", tooltip: "Earnings per share, trailing twelve months" },
+=======
+      tooltip: "Trailing P/E from NSE official data" },
+    { label: "EPS",        value: stock.eps ? `₹${stock.eps.toFixed(2)}` : "—", sub: "Price ÷ PE", tooltip: "Derived from NSE Price ÷ PE" },
+>>>>>>> 1fa8d5008fc6d81fb2d1cf7db82b1239c1087b5b
     { label: "VWAP",       value: stock.vwap ? formatCurrency(stock.vwap) : "—",
       sub: stock.vwap ? (stock.price > stock.vwap ? "Above VWAP ↑" : "Below VWAP ↓") : undefined,
       tooltip: "Volume Weighted Average Price — price paid on average across all trades today (NSE)" },
@@ -175,10 +180,16 @@ export default function StockPage() {
       sub: stock.week52High && stock.price > stock.week52High * 0.96 ? "Near ATH ↑" : undefined },
     { label: "52W Low",    value: stock.week52Low ? formatCurrency(stock.week52Low) : "—",
       sub: stock.week52Low && stock.price < stock.week52Low * 1.08 ? "Near support ↓" : undefined },
+<<<<<<< HEAD
     { label: "P/B Ratio",  value: stock.pbRatio ? stock.pbRatio.toFixed(2) : "—", sub: stock.bookValue ? `BV ₹${stock.bookValue.toFixed(2)}` : undefined, tooltip: "Price-to-book ratio" },
     { label: "Div. Yield", value: stock.dividendYield ? `${stock.dividendYield.toFixed(2)}%` : "—",
       sub: stock.dividendYield ? (stock.dividendYield > 3 ? "High yield" : "Low yield") : undefined,
       tooltip: "Annual dividend ÷ price" },
+=======
+    { label: "Div. Yield", value: stock.dividendYield ? `${stock.dividendYield.toFixed(2)}%` : "—",
+      sub: stock.dividendYield ? (stock.dividendYield > 3 ? "High yield" : "Low yield") : undefined,
+      tooltip: "Annual dividend ÷ price (from FMP)" },
+>>>>>>> 1fa8d5008fc6d81fb2d1cf7db82b1239c1087b5b
     { label: "Delivery %", value: stock.deliveryPercent != null ? `${stock.deliveryPercent.toFixed(1)}%` : "—",
       sub: stock.deliveryPercent != null ? (stock.deliveryPercent > 55 ? "Institutional" : stock.deliveryPercent < 25 ? "Speculative" : "Normal") : undefined,
       tooltip: ">50% delivery signals institutional accumulation (NSE data)" },
@@ -193,7 +204,11 @@ export default function StockPage() {
         ))}
       </div>
       <p className="text-[9px] mt-4 pt-3" style={{ borderTop: "1px solid var(--bg-border)", color: "var(--txt-muted)" }}>
+<<<<<<< HEAD
         Prices, PE, EPS, 52W range, market cap: Yahoo Finance · Delivery % and VWAP: NSE (when reachable)
+=======
+        PE, 52W & delivery: NSE · Market Cap, P/B, Book Value: FMP profile (same call) · EPS: Price ÷ PE
+>>>>>>> 1fa8d5008fc6d81fb2d1cf7db82b1239c1087b5b
       </p>
     </div>
   );

@@ -4,7 +4,11 @@ import { getChartData } from "@/lib/services/stockService";
 export async function GET(req: NextRequest) {
   const symbol = req.nextUrl.searchParams.get("symbol") ?? "";
   const exchange = (req.nextUrl.searchParams.get("exchange") ?? "NSE") as "NSE"|"BSE";
+<<<<<<< HEAD
   const range = (req.nextUrl.searchParams.get("range") ?? "1mo") as "1d"|"5d"|"1mo"|"3mo"|"6mo"|"1y"|"2y"|"5y";
+=======
+  const range = (req.nextUrl.searchParams.get("range") ?? "1mo") as "1d"|"5d"|"1mo"|"3mo"|"6mo"|"1y"|"5y";
+>>>>>>> 1fa8d5008fc6d81fb2d1cf7db82b1239c1087b5b
   if (!symbol) return NextResponse.json({ error: "Symbol required" }, { status: 400 });
   try {
     const data = await getChartData(symbol, exchange, range);

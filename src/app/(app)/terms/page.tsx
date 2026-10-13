@@ -15,7 +15,11 @@ export default function Terms() {
         {[
           { title: "1. Acceptance", body: "By accessing or using Bazaar, you agree to be bound by these Terms of Service. If you do not agree, please do not use the platform." },
           { title: "2. No Financial Advice", body: "Bazaar provides market data and AI-generated analysis for educational and informational purposes only. Nothing on this platform constitutes financial, investment, or trading advice. Always consult a SEBI-registered financial advisor before making investment decisions." },
+<<<<<<< HEAD
           { title: "3. Data Accuracy", body: "We source data from Yahoo Finance and, where available, NSE. While we strive for accuracy, we cannot guarantee real-time completeness. Market data may be delayed by up to 15 minutes during off-peak hours." },
+=======
+          { title: "3. Data Accuracy", body: "We source data from NSE, BSE, FMP, and Yahoo Finance. While we strive for accuracy, we cannot guarantee real-time completeness. Market data may be delayed by up to 15 minutes during off-peak hours." },
+>>>>>>> 1fa8d5008fc6d81fb2d1cf7db82b1239c1087b5b
           { title: "4. User Accounts", body: "You are responsible for maintaining the confidentiality of your account credentials. You must be 18 years or older to create an account." },
           { title: "5. Prohibited Use", body: "You may not use Bazaar to scrape data at scale, conduct automated trading, or engage in any activity that disrupts our services or violates applicable law." },
           { title: "6. Limitation of Liability", body: "Bazaar and its operators are not liable for any financial losses arising from use of this platform. Use of AI analysis and price alerts does not constitute a guarantee of performance." },

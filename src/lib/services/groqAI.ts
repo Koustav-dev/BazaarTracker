@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { StockDetails, ChartDataPoint, AISummary } from "@/lib/types";
 
 // ─── Model config ─────────────────────────────────────────────────────────────
@@ -68,6 +69,13 @@ function extractJSON(text: string): Record<string, unknown> {
   if (!m) throw new Error("AI returned no JSON");
   return JSON.parse(m[0]);
 }
+=======
+import Groq from "groq-sdk";
+import { StockDetails, ChartDataPoint, AISummary } from "@/lib/types";
+
+const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
+const MODEL = "llama-3.3-70b-versatile";
+>>>>>>> 1fa8d5008fc6d81fb2d1cf7db82b1239c1087b5b
 
 // ─── Technical Indicators (calculated from chart data) ────────────────────────
 function calcSMA(closes: number[], period: number): number | null {
@@ -86,6 +94,7 @@ function calcEMA(closes: number[], period: number): number | null {
 
 function calcRSI(closes: number[], period = 14): number | null {
   if (closes.length < period + 1) return null;
+<<<<<<< HEAD
   // Wilder's smoothing over the full history
   let gain = 0, loss = 0;
   for (let i = 1; i <= period; i++) {
@@ -124,6 +133,23 @@ function calcMACD(closes: number[]): { macd: number; signal: number; histogram: 
   const macd = macdLine[macdLine.length - 1];
   const signal = sig[sig.length - 1];
   return { macd: parseFloat(macd.toFixed(2)), signal: parseFloat(signal.toFixed(2)), histogram: parseFloat((macd - signal).toFixed(2)) };
+=======
+  const changes = closes.slice(-(period + 1)).map((v, i, arr) => i === 0 ? 0 : v - arr[i - 1]).slice(1);
+  const avgGain = changes.filter(c => c > 0).reduce((a, b) => a + b, 0) / period;
+  const avgLoss = changes.filter(c => c < 0).map(Math.abs).reduce((a, b) => a + b, 0) / period;
+  if (avgLoss === 0) return 100;
+  return parseFloat((100 - 100 / (1 + avgGain / avgLoss)).toFixed(1));
+}
+
+function calcMACD(closes: number[]): { macd: number; signal: number; histogram: number } | null {
+  const ema12 = calcEMA(closes, 12);
+  const ema26 = calcEMA(closes, 26);
+  if (!ema12 || !ema26) return null;
+  const macd = parseFloat((ema12 - ema26).toFixed(2));
+  // Simplified signal (would need 9-period EMA of MACD)
+  const signal = parseFloat((macd * 0.85).toFixed(2)); // approximation
+  return { macd, signal, histogram: parseFloat((macd - signal).toFixed(2)) };
+>>>>>>> 1fa8d5008fc6d81fb2d1cf7db82b1239c1087b5b
 }
 
 function calcBollingerBands(closes: number[], period = 20): { upper: number; middle: number; lower: number; width: number } | null {
@@ -287,7 +313,11 @@ export async function getStockAISummary(stock: StockDetails, chart?: ChartDataPo
   }
 
 
+<<<<<<< HEAD
   const prompt = `You are an AI assistant that writes concise, data-driven stock analysis notes for Indian equities. Base every statement only on the data provided below; do not invent figures.
+=======
+  const prompt = `You are Arjun Sharma, a senior equity research analyst at a top-tier Mumbai brokerage with 20 years of experience covering Nifty 50 stocks. You write Bloomberg-quality research notes.
+>>>>>>> 1fa8d5008fc6d81fb2d1cf7db82b1239c1087b5b
 
 STOCK DATA:
 ${lines.join("\n")}
@@ -325,8 +355,23 @@ JSON only, no markdown:
   "disclaimer": "Educational analysis only. Not SEBI-registered financial advice."
 }`;
 
+<<<<<<< HEAD
   const text = await groqChat(prompt, { temperature: 0.15, maxTokens: 4000, json: true });
   const parsed = extractJSON(text);
+=======
+  const completion = await groq.chat.completions.create({
+    model: MODEL,
+    messages: [{ role: "user", content: prompt }],
+    temperature: 0.15,
+    max_tokens: 1800,
+    response_format: { type: "json_object" },
+  });
+
+  const text = completion.choices[0]?.message?.content ?? "{}";
+  let parsed: Record<string, unknown>;
+  try { parsed = JSON.parse(text); }
+  catch { const m = text.match(/\{[\s\S]*\}/); parsed = m ? JSON.parse(m[0]) : {}; }
+>>>>>>> 1fa8d5008fc6d81fb2d1cf7db82b1239c1087b5b
 
   return {
     summary:   typeof parsed.summary === "string" ? parsed.summary : "Analysis unavailable.",
@@ -342,7 +387,13 @@ export async function getWatchlistInsight(stocks: { symbol: string; name: string
   if (!stocks.length) return "Add stocks to your watchlist to get AI insights.";
   const avg = (stocks.reduce((s, x) => s + x.changePercent, 0) / stocks.length).toFixed(2);
   const top = [...stocks].sort((a, b) => b.changePercent - a.changePercent);
+<<<<<<< HEAD
   const prompt = `You are an assistant summarising an Indian stock watchlist. Watchlist:\n${stocks.map(s => `${s.symbol}: ₹${s.price} (${s.changePercent > 0 ? "+" : ""}${s.changePercent.toFixed(2)}%)`).join(" | ")}\nAvg: ${avg}% | Best: ${top[0]?.symbol} | Worst: ${top[top.length-1]?.symbol}\n\n2-3 sentences: mood, standouts, one actionable. Specific numbers. Plain text only.`;
   const text = await groqChat(prompt, { temperature: 0.3, maxTokens: 1500 });
   return text.trim() || "Unable to generate insight.";
+=======
+  const prompt = `Indian equity analyst. Watchlist:\n${stocks.map(s => `${s.symbol}: ₹${s.price} (${s.changePercent > 0 ? "+" : ""}${s.changePercent.toFixed(2)}%)`).join(" | ")}\nAvg: ${avg}% | Best: ${top[0]?.symbol} | Worst: ${top[top.length-1]?.symbol}\n\n2-3 sentences: mood, standouts, one actionable. Specific numbers. Plain text only.`;
+  const c = await groq.chat.completions.create({ model: MODEL, messages: [{ role: "user", content: prompt }], temperature: 0.3, max_tokens: 200 });
+  return c.choices[0]?.message?.content?.trim() ?? "Unable to generate insight.";
+>>>>>>> 1fa8d5008fc6d81fb2d1cf7db82b1239c1087b5b
 }
