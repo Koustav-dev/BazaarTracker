@@ -14,10 +14,7 @@
     "bcryptjs": "^2.4.3",
     "clsx": "^2.1.1",
     "date-fns": "^3.6.0",
-<<<<<<< HEAD
-=======
     "groq-sdk": "^0.3.3",
->>>>>>> 1fa8d5008fc6d81fb2d1cf7db82b1239c1087b5b
     "lucide-react": "^0.395.0",
     "mongodb": "4.1",
     "mongoose": "^8.4.0",
