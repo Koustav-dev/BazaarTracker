@@ -15,15 +15,9 @@ Bazaar is a modern, full-stack stock tracking platform for Indian markets (NSE &
 
 | Feature | Description |
 |---------|-------------|
-<<<<<<< HEAD
 | **Real-time Prices** | Live NSE & BSE stock data from Yahoo Finance, enriched with NSE delivery %/VWAP when reachable |
 | **Technical Analysis** | RSI, MACD, Bollinger Bands, SMA (20/50/200), EMA, ATR, Volatility calculations |
 | **AI Research Notes** | AI (Groq, GPT-OSS 120B) generates directional views with price targets, stop-loss, and thesis |
-=======
-| **Real-time Prices** | Live NSE & BSE stock data from official NSE API with Yahoo Finance fallback |
-| **Technical Analysis** | RSI, MACD, Bollinger Bands, SMA (20/50/200), EMA, ATR, Volatility calculations |
-| **AI Research Notes** | Groq AI generates directional views with price targets, stop-loss, and thesis |
->>>>>>> 1fa8d5008fc6d81fb2d1cf7db82b1239c1087b5b
 | **Price Alerts** | Email notifications when target prices are hit (above/below conditions) |
 | **Watchlist** | Personal watchlist with live price updates |
 | **Market Indices** | Live NIFTY 50, SENSEX, NIFTY BANK tracking |
@@ -108,11 +102,7 @@ BazaarTracker/
 - **State Management**: Zustand, TanStack React Query
 - **Database**: MongoDB 4.1 with Mongoose 8.4
 - **Authentication**: NextAuth.js 4.24 (Credentials + Google OAuth)
-<<<<<<< HEAD
 - **AI**: Groq API (`openai/gpt-oss-120b`, configurable via `GROQ_MODEL`)
-=======
-- **AI**: Groq SDK (Llama 3.3 70B)
->>>>>>> 1fa8d5008fc6d81fb2d1cf7db82b1239c1087b5b
 - **Charts**: Recharts
 - **Email**: Nodemailer
 - **Fonts**: Sora, DM Sans, JetBrains Mono
@@ -162,7 +152,6 @@ EMAIL_FROM=Bazaar <noreply@bazaar.app>
 # AI SERVICE
 # ===================
 GROQ_API_KEY=your-groq-api-key
-<<<<<<< HEAD
 # Optional: override the model (default openai/gpt-oss-120b)
 # GROQ_MODEL=openai/gpt-oss-120b
 
@@ -170,8 +159,6 @@ GROQ_API_KEY=your-groq-api-key
 # FMP_API_KEY=...        # extra company profile data
 # NEWSDATA_API_KEY=...   # better news source
 # CRON_SECRET=...        # protects /api/cron/check-alerts
-=======
->>>>>>> 1fa8d5008fc6d81fb2d1cf7db82b1239c1087b5b
 ```
 
 ### 3. Get API Keys
@@ -286,21 +273,13 @@ npm run lint     # Run ESLint
 
 ## 📄 License
 
-<<<<<<< HEAD
 MIT License - See [LICENSE](LICENSE) for details. Market data is provided by third parties (Yahoo Finance, NSE) under their own terms.
-=======
-MIT License - See [LICENSE](LICENSE) for details.
->>>>>>> 1fa8d5008fc6d81fb2d1cf7db82b1239c1087b5b
 
 ---
 
 ## ⚠️ Disclaimer
 
-<<<<<<< HEAD
 This platform is for educational and informational purposes only. Stock data is sourced from Yahoo Finance and NSE. **Not financial advice** — always do your own research before making investment decisions.
-=======
-This platform is for educational and informational purposes only. Stock data is sourced from NSE and Yahoo Finance. **Not financial advice** — always do your own research before making investment decisions.
->>>>>>> 1fa8d5008fc6d81fb2d1cf7db82b1239c1087b5b
 
 ---
 
